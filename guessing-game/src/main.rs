@@ -3,23 +3,25 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Guess the number or lose your PC!\nPlease input your guess.");
+    println!("Guess the number or lose your PC!");
 
     let secret_number = rand::rng().random_range(1..=100);
 
-    let mut guess = String::new();
+    loop {
+        println!("Please input your guess:");
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        let mut guess = String::new();
 
-    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
 
-    println!("You guessed: {}", guess);
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small! Too bad, errasing system..."),
-        Ordering::Greater => println!("Too large! Too bad, errasing system..."),
-        Ordering::Equal => println!("On point! You keep your system... for now"),
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small! Too bad, errasing system..."),
+            Ordering::Greater => println!("Too large! Too bad, errasing system..."),
+            Ordering::Equal => println!("On point! You keep your system... for now"),
+        }
     }
 }

@@ -19,9 +19,12 @@ fn main() {
         let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small! Too bad, errasing system..."),
-            Ordering::Greater => println!("Too large! Too bad, errasing system..."),
-            Ordering::Equal => println!("On point! You keep your system... for now"),
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too large!"),
+            Ordering::Equal => {
+                println!("On point, you win!");
+                break;
+            }
         }
     }
 }
